@@ -50,7 +50,12 @@ export const loginUser = async (req,res)=>{
             throw Error("Password is incorrect")
         }
 
-        res.status(200).json({name:user.name,email:user.email, id:user._id})
+        res.status(200).json({
+            name:user.name,
+            email:user.email,
+            id:user._id,
+            avatar_id: user.avatar_id
+        })
 
     } catch (error) {
         res.status(400).json({msg:error.message,stack:error.stack})

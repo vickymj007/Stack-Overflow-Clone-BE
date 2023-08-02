@@ -15,6 +15,10 @@ const userModel = new mongoose.Schema({
         type:String,
         required:true
     },
+    avatar_id:{
+        type:Number,
+        default:Math.round(Math.random()*13)+1
+    }
 },{timestamps:true})
 
 userModel.pre('save',async function (next){
