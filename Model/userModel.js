@@ -18,6 +18,14 @@ const userModel = new mongoose.Schema({
     avatar_id:{
         type:Number,
         default:Math.round(Math.random()*13)+1
+    },
+    country:{
+        type:String,
+        default: "India"
+    },
+    title:{
+        type:String,
+        default:""
     }
 },{timestamps:true})
 
