@@ -60,15 +60,8 @@ export const loginUser = async (req,res)=>{
 export const updateUser = async (req,res)=>{
     try {
         const {userID} = req.params
-        const user = await User.findById(userID)
-        if(!user){
-            throw Error("User id is invalid")
-        }
-        user.name = req.body.name
-        user.title = req.body.title
-        user.country = req.body.country
-        user.avatar_id = req.body.avatar_id
-        await user.save()
+        const user = await User.findByIdAndUpdate(userID,{$set:req.body},{new:true})
+
         res.status(201).json(user)
     } catch (error) {
         res.status(400).json({msg:error.message,stack:error.stack})
