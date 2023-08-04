@@ -4,6 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import { questionRouter } from './Routes/questionsRoute.js'
 import { userRouter } from './Routes/userRoute.js'
+import { companiesRouter } from './Routes/companiesRoute.js'
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.get('/', (req,res)=>{
 
 app.use('/api/questions',questionRouter)
 app.use('/api/users',userRouter)
+app.use('/api/companies',companiesRouter)
 
 const connectDB = async()=>{
     try {
