@@ -97,9 +97,10 @@ export const forgotPassword = async(req,res)=>{
         let OTP = Math.floor(1000 + Math.random() * 9000)
 
         const html = mailGenerator.generate({
-            name:"",
+            name:"Mailgen",
             body:{
-                intro:`OPT to change your password is ${OTP}`
+                intro:`OPT to change your password is ${OTP}`,
+                outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
             }
         })
 
@@ -108,11 +109,12 @@ export const forgotPassword = async(req,res)=>{
             to:req.body.email,
             subject:"Recover your account",
             html
+            
         })
 
         OTP = OTP.toString()
         const jwtToken = jsonwebtoken.sign({OTP},process.env.JWT_SECRET_KEY,{expiresIn:'10m'})
-        res.cookie("otp",jwtToken,{maxAge: 1000*60*10})
+        res.cookie("otp",jwtToken,{secure:true, sameSite:'none', httpOnly:true,maxAge: 1000*60*10})
         res.status(200).json({msg:"OTP has been sent to your Email"})
         
     } catch (error) {
