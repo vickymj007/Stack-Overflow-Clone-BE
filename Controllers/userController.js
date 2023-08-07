@@ -87,7 +87,7 @@ export const forgotPassword = async(req,res)=>{
         })
 
         const mailGenerator = new Mailgen({
-            theme:"Default",
+            theme:'default',
             product:{
                 name:"Mailgen",
                 link:"https://mailgen.js/"
